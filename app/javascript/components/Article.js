@@ -13,14 +13,25 @@ class Article extends React.Component {
           Description: {this.props.description} &nbsp;
           <div className="article-meta-details">
             <small>
-              Created by: {this.props.name}, {this.props.created_at} ago, &nbsp;
-              Created At: <Timestamp time = {this.props.created_at} />, &nbsp;
-              Updated At: <Timestamp time = {this.props.updated_at} /> &nbsp;
+              Created by: {this.props.name}, <Timestamp time = {this.props.created_at} /> ago, &nbsp;
+              Created At: <Timestamp time = {this.props.created_at} precision = {3} />, &nbsp;
+              Updated At: <Timestamp time = {this.props.updated_at} precision = {3} /> &nbsp;
             </small>
           </div>
         </div>
       </React.Fragment>
     );
+  }
+  componentDidMount(){
+    var self = this;
+    this._timer = setInterval(function() { self.forceUpdate() }, 1000);
+  }
+
+  componentWillUnmount() {
+    if (this._timer) {
+      clearInterval(this._timer);
+      this._timer = null;
+    }
   }
 }
 
