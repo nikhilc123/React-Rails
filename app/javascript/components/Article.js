@@ -7,7 +7,16 @@ class Article extends React.Component {
         <div className="article-title">
           <a href={this.props.path}>{this.props.title}</a>
         </div>
-        {this.props.description}
+        <div className="article-body">
+          <div className="article-meta-details">
+            <small>
+              Created by: {this.props.name}, {this.props.created_at} ago
+              Description: {this.props.description},
+              Created At: {this.props.created_at},
+              Updated At: {this.props.updated_at}
+            </small>
+          </div>
+        </div>
       </React.Fragment>
     );
   }
@@ -16,6 +25,9 @@ class Article extends React.Component {
 Article.propTypes = {
   title: PropTypes.string,
   path: PropTypes.string,
-  description: PropTypes.node
+  name: PropTypes.string,
+  description: PropTypes.node,
+  created_at: PropTypes.created_at,
+  updated_at: PropTypes.updated_at
 };
 export default Article
